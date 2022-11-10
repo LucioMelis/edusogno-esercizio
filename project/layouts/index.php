@@ -13,7 +13,7 @@
     <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./style.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
   </head>
 
   <body>
@@ -31,7 +31,7 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="php/login.php">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
