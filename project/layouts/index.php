@@ -34,7 +34,7 @@
               <a class="nav-link" href="php/login.php">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link" href="#">Register</a>
             </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
@@ -47,7 +47,7 @@
 
     <!-- Begin page content -->
     <main role="main" class="container">
-      <h1 class="mt-5">Benvenuti</h1>
+      <h1 class="mt-5">Benvenuti nella Home</h1>
       <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
       <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
     </main>
