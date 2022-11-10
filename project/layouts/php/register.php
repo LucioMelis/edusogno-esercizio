@@ -31,18 +31,18 @@
     <div class="row">
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Insert your data</h4>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate method="post" action="register.php">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" name="name" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" name="surname" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -51,23 +51,23 @@
 
           <div class="mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
             <div class="invalid-feedback">
               Please enter a valid email address for shipping updates.
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="address">Password</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+            <label for="new-password">Password</label>
+            <input type="text" class="form-control" id="address" name="password" placeholder="" required>
             <div class="invalid-feedback">
               Please enter your password.
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="address2">Confirm your password</label>
-            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" required>
+            <label for="confirm-password">Confirm your password</label>
+            <input type="text" class="form-control" id="address2" name="password_confirmation" placeholder="" required>
             <div class="invalid-feedback">
             Passwords are not the same.
             </div>
