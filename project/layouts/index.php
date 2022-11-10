@@ -34,7 +34,7 @@
               <a class="nav-link" href="php/login.php">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
+              <a class="nav-link" href="php/register.php">Register</a>
             </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
