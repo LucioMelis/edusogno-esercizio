@@ -1,6 +1,68 @@
 <?php
-include __DIR__ . './new_user.php';
+//Definisco delle veriabili
+$name = $_POST['name'];
+$surname = $_POST['surname'];
+$email = $_POST ['email'];
+$password = $_POST['password'];
+$password_confirm = $__POST ['password_confirmation'];
+
+
+$name_err = '';
+$surname_err = '';
+$email_err = '';
+$password_err = '';
+
+if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirmation']) && isset($_POST['name'])){
+
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($name)) {
+      $name_err = "Name is required";
+    } else {
+      $name = check($name);
+      // controlla se il nome contiene solo lettere e spazi bianchi
+    //   if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+    //     $name_err = "Only letters and white space allowed";
+    //   }
+    }
+    
+    if (empty($email)) {
+      $email_err = "Email is required";
+    } else {
+      // controlla se email è valida
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $email_err = "Invalid email format";
+      }
+    }
+      
+    if (empty($surname)) {
+      $surname_err = "Surname is required";
+    } else {
+      $surname = check($surname);
+      // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
+      if (!preg_match("/^[a-zA-Z-' ]*$/",$surname)) {
+        $surname_err = "Only letters and white space allowed";
+      }
+    }
+  
+    if(empty($password)){
+        $password_err = 'Please enter your password';
+    }else{
+        if($password != $password_confirm ){
+            $password_err = 'Passwords are not the same';
+        }
+    }
+  }
+  
+  function check($data){
+	$data = trim($data);
+    $data = ucwords($data);
+    return $data;
+}
+
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -35,7 +97,7 @@ include __DIR__ . './new_user.php';
     <div class="row">
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Insert your data</h4>
-        <form class="needs-validation" novalidate method="post" action="register.php">
+        <form class="needs-validation" action="register.php" method="POST">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
@@ -48,7 +110,7 @@ include __DIR__ . './new_user.php';
               <label for="lastName">Last name</label>
               <input type="text" class="form-control" id="lastName" name="surname" placeholder="" value="" required>
               <div class="invalid-feedback">
-                Valid last name is required.
+              <?php echo $surname_err; ?>
               </div>
             </div>
           </div>
@@ -57,23 +119,23 @@ include __DIR__ . './new_user.php';
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
             <div class="invalid-feedback">
-              Please enter a valid email address for shipping updates.
+            <?php echo $email_err; ?>
             </div>
           </div>
 
           <div class="mb-3">
             <label for="new-password">Password</label>
-            <input type="text" class="form-control" id="address" name="password" placeholder="" required>
+            <input type="password" class="form-control" id="address" name="password" placeholder="" required>
             <div class="invalid-feedback">
-              Please enter your password.
+            <?php echo $password_error; ?>
             </div>
           </div>
 
           <div class="mb-3">
             <label for="confirm-password">Confirm your password</label>
-            <input type="text" class="form-control" id="address2" name="password_confirmation" placeholder="" required>
+            <input type="password" class="form-control" id="address2" name="password_confirmation" placeholder="" required>
             <div class="invalid-feedback">
-            Passwords are not the same.
+            <?php echo $password_error; ?>
             </div>
           </div>
 
