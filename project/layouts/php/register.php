@@ -1,3 +1,7 @@
+<?php
+include __DIR__ . './new_user.php';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -37,9 +41,9 @@
               <label for="firstName">First name</label>
               <input type="text" class="form-control" id="firstName" name="name" placeholder="" value="" required>
               <div class="invalid-feedback">
-                Valid first name is required.
+                <?php echo $name_err; ?>
               </div>
-            </div>
+             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
               <input type="text" class="form-control" id="lastName" name="surname" placeholder="" value="" required>

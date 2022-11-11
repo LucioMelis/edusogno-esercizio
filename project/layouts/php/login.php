@@ -64,8 +64,9 @@ if(isset($_POST['email']) && isset($_POST['password'])){
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
       <div class="checkbox mb-3">
         <label>
-        <?php if(strlen($msg) > 0){
-           print $msg;
+        <?php 
+        if(strlen($msg) > 0){
+            print $msg;
         }else{
             echo '<input type="checkbox" value="remember-me"> Remember me';
         }
