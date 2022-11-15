@@ -1,30 +1,28 @@
 <?php
-//Definisco delle veriabili
-$name = $_POST['name'];
-$surname = $_POST['surname'];
-$email = $_POST ['email'];
-$password = $_POST['password'];
-$password_confirm = $__POST ['password_confirmation'];
-
-
 $name_err = '';
 $surname_err = '';
 $email_err = '';
 $password_err = '';
 
-if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirmation']) && isset($_POST['name'])){
+$name ='';
+$surname = '';
+$email = '';
+$password = '';
+$password_confirm = '';
 
-}
+if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirmation']) && isset($_POST['name']) && isset($_POST['surname'])){
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//Definisco delle veriabili
+$name = $_POST['name'];
+$surname = $_POST['surname'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$password_confirm = $_POST['password_confirmation'];
+
     if (empty($name)) {
       $name_err = "Name is required";
     } else {
       $name = check($name);
-      // controlla se il nome contiene solo lettere e spazi bianchi
-    //   if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-    //     $name_err = "Only letters and white space allowed";
-    //   }
     }
     
     if (empty($email)) {
@@ -53,6 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password_err = 'Passwords are not the same';
         }
     }
+    echo $password_err;
+    echo $password . '  ' .  $password_confirm;
+    var_dump($name,$surname,$email,$password);
+
+
+
   }
   
   function check($data){
@@ -76,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <title>Register example for Bootstrap</title>
 
+
   <!-- Bootstrap core CSS -->
   <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -85,9 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="bg-light">
 
-  <div class="container">
+<div class="container">
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="#"
+      <img class="d-block mx-auto mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt=""
         width="72" height="72">
       <h2>Register Account</h2>
       <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group
@@ -96,53 +101,152 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="row">
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Insert your data</h4>
-        <form class="needs-validation" action="register.php" method="POST">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" novalidate>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" name="name" placeholder="" value="" required>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
-                <?php echo $name_err; ?>
+                <!-- Valid first name is required. -->
+                <?php echo $password_err; ?>
               </div>
-             </div>
+            </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" name="surname" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
               <div class="invalid-feedback">
-              <?php echo $surname_err; ?>
+                Valid last name is required.
               </div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">
-            <?php echo $email_err; ?>
+            <label for="username">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="text" class="form-control" id="username" placeholder="Username" required>
+              <div class="invalid-feedback" style="width: 100%;">
+                Your username is required.
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="new-password">Password</label>
-            <input type="password" class="form-control" id="address" name="password" placeholder="" required>
+            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com">
             <div class="invalid-feedback">
-            <?php echo $password_error; ?>
+              Please enter a valid email address for shipping updates.
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="confirm-password">Confirm your password</label>
-            <input type="password" class="form-control" id="address2" name="password_confirmation" placeholder="" required>
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
             <div class="invalid-feedback">
-            <?php echo $password_error; ?>
+              Please enter your shipping address.
             </div>
           </div>
 
-          <!-- SUBMIT -->
-          
+          <div class="mb-3">
+            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="country">Country</label>
+              <select class="custom-select d-block w-100" id="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="state">State</label>
+              <select class="custom-select d-block w-100" id="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="zip">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+          </div>
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to register</button>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="same-address">
+            <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
+              address</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="save-info">
+            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+          </div>
+          <hr class="mb-4">
+
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+              <label class="custom-control-label" for="credit">Credit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="debit">Debit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="paypal">Paypal</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Credit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Expiration</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
         </form>
       </div>
     </div>
@@ -157,8 +261,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </footer>
   </div>
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
+  <!-- Bootstrap core JavaScript -->
+    <!-- ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
